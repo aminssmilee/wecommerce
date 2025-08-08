@@ -1,44 +1,28 @@
-import { ArrowRight } from 'lucide-react'
-import produk from '../assets/pens1.jpg'
+import { useEffect, useState } from "react";
+import { ArrowRight } from "lucide-react";
+import { getProducts } from "../services/api";
 
 export default function ServiceCategories() {
-  const services = [
-    {
-      title: "Business Landing",
-      description: "Professional corporate websites",
-      price: "Starting $499",
-      badge: "New Service",
-      badgeVariant: "bg-blue-100 text-blue-800",
-    },
-    {
-      title: "E-commerce",
-      description: "Online store solutions",
-      price: "Starting $799",
-      badge: "Popular",
-      badgeVariant: "bg-purple-100 text-purple-800",
-    },
-    {
-      title: "Portfolio",
-      description: "Showcase your work",
-      price: "Starting $399",
-      badge: "Creative",
-      badgeVariant: "bg-yellow-100 text-yellow-800",
-    },
-    {
-      title: "App Landing",
-      description: "Mobile app promotion",
-      price: "Starting $599",
-      badge: "Trending",
-      badgeVariant: "bg-green-100 text-green-800",
-    },
-    {
-      title: "App Landing",
-      description: "Mobile app promotion",
-      price: "Starting $599",
-      badge: "Trending",
-      badgeVariant: "bg-green-100 text-green-800",
-    }
-  ]
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getProducts()
+      .then(data => {
+        console.log("Products API:", data);
+        setServices(data); // langsung simpan array product
+      })
+      .catch(err => console.error("Error fetching products:", err))
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) {
+    return <p className="text-center py-10">Loading products...</p>;
+  }
+
+  if (services.length === 0) {
+    return <p className="text-center py-10">No products found.</p>;
+  }
 
   return (
     <section className="py-16 bg-gray-50">
@@ -51,7 +35,7 @@ export default function ServiceCategories() {
             >
               <div className="h-48 w-full overflow-hidden">
                 <img
-                  src={produk}
+                  src={`http://127.0.0.1:8000/storage/${service.image}`}
                   alt={service.title}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
@@ -59,14 +43,16 @@ export default function ServiceCategories() {
 
               <div className="p-6">
                 <span
-                  className={`inline-block text-xs font-semibold px-2 py-1 rounded mb-2 ${service.badgeVariant}`}
+                  className="inline-block text-xs font-semibold px-2 py-1 rounded mb-2 bg-blue-100 text-blue-800"
                 >
-                  {service.badge}
+                  Product
                 </span>
 
                 <h3 className="font-semibold text-lg mb-2">{service.title}</h3>
                 <p className="text-gray-600 text-sm mb-3">{service.description}</p>
-                <p className="text-blue-600 font-semibold">{service.price}</p>
+                <p className="text-blue-600 font-semibold">
+                  Rp {parseInt(service.price || 0).toLocaleString()}
+                </p>
 
                 <button className="mt-2 inline-flex items-center text-blue-600 font-medium hover:underline text-sm">
                   Learn More <ArrowRight className="w-4 h-4 ml-1" />
@@ -77,5 +63,5 @@ export default function ServiceCategories() {
         </div>
       </div>
     </section>
-  )
+  );
 }
