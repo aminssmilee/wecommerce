@@ -1,4 +1,6 @@
 import { ArrowRight } from "lucide-react";
+import costom from "../assets/logo/custom.png";
+import mt from "../assets/logo/maintenance.png";
 
 export default function Banners() {
   return (
@@ -17,7 +19,7 @@ export default function Banners() {
                 </button>
               </div>
               <img
-                src="/placeholder.svg?text=Custom+Dev"
+                src={costom}
                 alt="Custom Development"
                 width={200}
                 height={150}
@@ -37,7 +39,7 @@ export default function Banners() {
                 </button>
               </div>
               <img
-                src="/placeholder.svg?text=Maintenance"
+                src={mt}
                 alt="Maintenance"
                 width={200}
                 height={150}

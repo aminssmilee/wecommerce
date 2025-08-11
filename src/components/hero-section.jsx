@@ -14,8 +14,8 @@ export default function HeroSection() {
       .then(([bannerRes, productRes]) => {
         console.log("Banner API:", bannerRes);
         console.log("Product API:", productRes);
-        setBanners(bannerRes || []);
-        setProduct(productRes?.[0] || {});
+        setBanners(Array.isArray(bannerRes) ? bannerRes : []);
+        setProduct(productRes?.data?.[0] || {});
       })
       .catch(err => console.error("❌ Error fetching data:", err))
       .finally(() => setLoading(false));
@@ -30,7 +30,7 @@ export default function HeroSection() {
   }
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     autoplay: true,
     autoplaySpeed: 4000,
@@ -49,21 +49,16 @@ export default function HeroSection() {
 
           return (
             <div key={index} className="relative min-h-screen">
-              {/* Background Image */}
               <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: `url(${imageUrl})` }}
               />
-
-              {/* Overlay */}
               <div className="absolute inset-0 bg-black/50" />
-
-              {/* Content */}
               <div className="relative z-10 flex items-center min-h-screen">
                 <div className="max-w-7xl mx-auto px-4">
                   <div className="grid lg:grid-cols-2 gap-12 items-center">
                     <div className="text-white">
-                      <p className="text-blue-200 font-medium mb-4">{banner.judul}</p>
+                      <p className="text-blue-200 font-medium mb-4">Wecommerce.idn</p>
                       <h1 className="text-5xl font-bold mb-6 leading-tight">
                         {product.title?.toUpperCase()} <br />
                         <span className="text-blue-400">{banner.deskripsi}</span>
