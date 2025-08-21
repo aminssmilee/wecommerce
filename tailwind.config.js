@@ -8,6 +8,7 @@ export default {
     extend: {
       fontFamily: {
         jakarta: ['"Plus Jakarta Sans"', 'sans-serif'],
+        helvetica: ['Helvetica', 'sans-serif'],
       },
     },
   },

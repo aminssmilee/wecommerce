@@ -1,36 +1,60 @@
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TopBar from './components/top-bar';
 import Navbar from './components/navbar';
 import HeroSection from './components/hero-section';
 import TrustBadges from './components/trust-badges';
 import ServiceCategories from './components/service-categories';
-// import FeaturedServices from './components/featured-services';
 import CTABanners from './components/Banners';
 import Detail from './components/Detail';
+import { Footer } from "./components/Footer";
+import QuotePage from './pages/QuotePage';
+import MaintenancePage from './pages/MaintenancePage';
+import './assets/fonts/fonts.css'
+
+
+function LoadingScreen() {
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-white ">
+      <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-blue-500"></div>
+    </div>
+  );
+}
 
 function LandingPage() {
   return (
-    <div className="min-h-screen bg-white font-jakarta">
-      <TopBar />
+    <div className="min-h-screen font-jakarta">
+      {/* <TopBar /> */}
       <Navbar />
       <HeroSection />
       <TrustBadges />
       <ServiceCategories />
-      {/* <FeaturedServices /> */}
       <CTABanners />
+      {/* <Footer /> */}
     </div>
   );
 }
 
 export default function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulasi loading 2 detik
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <LoadingScreen />;
+  }
+
   return (
     <Router>
       <Routes>
-        {/* Halaman utama */}
         <Route path="/" element={<LandingPage />} />
-        
-        {/* Halaman detail statis */}
-        <Route path="/detail" element={<Detail />} />
+        <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/quote" element={<QuotePage />} />
+        <Route path="/maintenance" element={<MaintenancePage />} />
       </Routes>
     </Router>
   );

@@ -20,10 +20,10 @@ export default function ProductsWithPagination({ products }) {
         <section className="py-16 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 text-center mb-10">
                 <h1 className="text-3xl font-bold text-gray-800 mb-3">
-                    Our Product Selection
+                    Pilihan Produk Kami
                 </h1>
                 <p className="text-gray-600 max-w-2xl mx-auto">
-                    Explore our curated collection of digital products crafted to deliver innovation, efficiency, and quality for your business and personal needs.
+                    Jelajahi koleksi produk digital pilihan kami yang dirancang untuk menghadirkan inovasi, efisiensi, dan kualitas terbaik bagi kebutuhan bisnis maupun pribadi Anda.
                 </p>
             </div>
 
@@ -55,12 +55,9 @@ export default function ProductsWithPagination({ products }) {
                                     {service.description?.split(" ").slice(0, 8).join(" ")}...
                                 </p>
                                 <p className="text-blue-600 font-semibold">
-                                    Rp {parseInt(service.price || 0).toLocaleString()}
+                                    Rp {parseInt(service.price || 0).toLocaleString('id-ID')}
                                 </p>
-                                <Link
-                                    to="/detail"
-                                    className="mt-2 inline-flex items-center text-blue-600 font-medium hover:underline text-sm"
-                                >
+                                <Link to={`/detail/${service.id}`} className="mt-2 inline-flex items-center text-blue-600 font-medium hover:underline text-sm">
                                     Learn More <ArrowRight className="w-4 h-4 ml-1" />
                                 </Link>
                             </div>
