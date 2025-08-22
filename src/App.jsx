@@ -11,6 +11,8 @@ import { Footer } from "./components/Footer";
 import QuotePage from './pages/QuotePage';
 import MaintenancePage from './pages/MaintenancePage';
 import './assets/fonts/fonts.css'
+import Categories from "./components/Category";
+import Hero from "./components/Hero"
 
 
 function LoadingScreen() {
@@ -27,10 +29,12 @@ function LandingPage() {
       {/* <TopBar /> */}
       <Navbar />
       <HeroSection />
-      <TrustBadges />
       <ServiceCategories />
-      <CTABanners />
-      {/* <Footer /> */}
+      <Categories />
+      <TrustBadges />
+      {/* <CTABanners /> */}
+      <Hero />
+      <Footer />
     </div>
   );
 }

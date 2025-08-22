@@ -1,114 +1,96 @@
-import { FaInstagram, FaYoutube, FaFacebook } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaPinterestP, FaInstagram, FaYoutube } from "react-icons/fa";
+import { ArrowRight } from "lucide-react";
 
 export function Footer() {
-    return (
-        <footer className="bg-muted/30 bg-zinc-200 font-jakarta">
-            {/* Main Footer Content */}
-            <div className="max-w-7xl mx-auto px-4 py-12">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {/* Company Info */}
-                    <div className="space-y-4 text-justify">
-                        <h3 className="text-lg font-semibold">Webcareidn.</h3>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
-                            Penyedia jasa pembuatan website, toko online, dan sistem e-commerce profesional.
-                            Kami membantu bisnis Anda hadir secara online dengan desain modern dan fitur lengkap.
-                        </p>
-                        <div className="space-y-2 text-sm">
-                            <div className="flex items-center gap-2">
-                                <span>📍</span>
-                                <span>Jl. Alas Sari, GG. Alam Pesona I Jl. Alas Tipis, RT.65/RW.02, Pabean, Kec. Sedati, Kabupaten Sidoarjo, Jawa Timur 61253</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <span>📞</span>
-                                <span>+62 812 3456 7890</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <span>✉️</span>
-                                <span>support@webcommer.com</span>
-                            </div>
-                        </div>
-                    </div>
+  return (
+    <footer className="bg-black text-gray-300 font-helvetica">
+      {/* Connect Section */}
+      <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-zinc-800">
+        <h2 className="text-2xl font-bold">
+          Let’s <span className="text-blue-600">Connect</span> there
+        </h2>
+        <button className="flex items-center gap-2 bg-blue-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-blue-700 transition-colors">
+          Contact Us Now <ArrowRight className="w-4 h-4 text-black" />
+        </button>
 
-                    {/* Services */}
-                    <div className="space-y-4">
-                        <h3 className="text-lg font-semibold">Layanan Kami</h3>
-                        <ul className="space-y-2 text-sm">
-                            <li><a href="#" className="text-muted-foreground hover:text-foreground">Pembuatan Website</a></li>
-                            <li><a href="#" className="text-muted-foreground hover:text-foreground">Desain Toko Online</a></li>
-                            <li><a href="#" className="text-muted-foreground hover:text-foreground">Custom E-Commerce</a></li>
-                            <li><a href="#" className="text-muted-foreground hover:text-foreground">Optimasi SEO</a></li>
-                            <li><a href="#" className="text-muted-foreground hover:text-foreground">Maintenance Website</a></li>
-                            <li><a href="#" className="text-muted-foreground hover:text-foreground">Konsultasi Bisnis Digital</a></li>
-                        </ul>
-                    </div>
+      </div>
 
-                    {/* About Company */}
-                    <div className="space-y-4">
-                        <h3 className="text-lg font-semibold">Tentang Kami</h3>
-                        <ul className="space-y-2 text-sm">
-                            <li><a href="#" className="text-muted-foreground hover:text-foreground">Profil Perusahaan</a></li>
-                            <li><a href="#" className="text-muted-foreground hover:text-foreground">Portofolio</a></li>
-                            <li><a href="#" className="text-muted-foreground hover:text-foreground">Testimoni Klien</a></li>
-                            <li><a href="#" className="text-muted-foreground hover:text-foreground">Blog Teknologi</a></li>
-                            <li><a href="#" className="text-muted-foreground hover:text-foreground">Kebijakan Privasi</a></li>
-                            <li><a href="#" className="text-muted-foreground hover:text-foreground">Syarat & Ketentuan</a></li>
-                        </ul>
-                    </div>
 
-                    {/* Social Media & Features */}
-                    <div className="space-y-4">
-                        <h3 className="text-lg font-semibold">Ikuti Kami</h3>
-                        <div className="flex gap-3 text-lg">
-                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-2 border rounded hover:bg-pink-100 text-pink-600">
-                                <FaInstagram />
-                            </a>
-                            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="p-2 border rounded hover:bg-red-100 text-red-600">
-                                <FaYoutube />
-                            </a>
-                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="p-2 border rounded hover:bg-blue-100 text-blue-700">
-                                <FaFacebook />
-                            </a>
-                        </div>
+      {/* Main Footer Content */}
+      <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        {/* Brand Info */}
+        <div className="space-y-4 text-justify">
+          <h2 className="text-2xl font-bold text-blue-700">Webcare.idn</h2>
+          <p className="text-sm leading-relaxed">
+            Start-Up yang bergerak dalam bidang teknologi guna membantu para pelaku usaha khususnya UMKM untuk naik kelas melalui platform website
+          </p>
+          <div className="flex gap-3 text-lg text-white">
+            {[FaFacebookF, FaTwitter, FaPinterestP, FaInstagram, FaYoutube].map((Icon, i) => (
+              <a
+                key={i}
+                href="#"
+                className="w-9 h-9 flex items-center justify-center rounded-full bg-blue-600 hover:bg-blue-700"
+              >
+                <Icon />
+              </a>
+            ))}
+          </div>
+        </div>
 
-                        <div className="space-y-3 pt-4">
-                            <h4 className="font-medium">Mengapa Memilih Kami</h4>
-                            <div className="space-y-2 text-sm">
-                                <div className="flex items-center gap-2">
-                                    <span>⚡</span>
-                                    <span>Desain Cepat & Responsif</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <span>🛡️</span>
-                                    <span>Keamanan Website Terjamin</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <span>🤝</span>
-                                    <span>Dukungan Pelanggan 24/7</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        {/* Navigation */}
+        <div>
+          <h3 className="text-blue-600 font-semibold mb-4">Navigation</h3>
+          <ul className="space-y-2 text-sm">
+            {["Home", "Services", "About Us", "Projects", "Careers", "FAQs"].map((item, i) => (
+              <li key={i}>
+                <a href="#" className="hover:text-blue-600">{item}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-            {/* Payment Methods & Copyright */}
-            <div className="border-t">
-                <div className="max-w-7xl mx-auto px-4 py-6">
-                    <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-                        <div className="flex items-center gap-4">
-                            {/* <span className="text-sm text-muted-foreground">Metode Pembayaran:</span>
-              <div className="flex items-center gap-2">
-                <div className="flex items-center justify-center w-8 h-6 bg-blue-600 rounded text-white text-xs font-bold">VISA</div>
-                <div className="flex items-center justify-center w-8 h-6 bg-red-600 rounded text-white text-xs font-bold">MC</div>
-                <div className="flex items-center justify-center w-8 h-6 bg-blue-500 rounded text-white text-xs font-bold">BCA</div>
-                <div className="flex items-center justify-center w-8 h-6 bg-green-600 rounded text-white text-xs font-bold">OVO</div>
-                <div className="flex items-center justify-center w-8 h-6 bg-blue-700 rounded text-white text-xs font-bold">DANA</div>
-              </div> */}
-                        </div>
-                        <div className="text-sm text-muted-foreground">© 2025 Webcareidn. Semua hak dilindungi undang-undang.</div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    );
+        {/* Contact */}
+        <div>
+          <h3 className="text-blue-600 font-semibold mb-4">Contact</h3>
+          <ul className="space-y-2 text-sm text-justify">
+            <li>+0123-456-789</li>
+            <li>www.webcareidn.com</li>
+            <li>webcareidn@gmail.com</li>
+            <li>
+              Jl. Alas Sari, GG. Alam Pesona I, Jl. Alas Tipis, RT.65/RW.02,
+              Pabean, Kec. Sedati, Kabupaten Sidoarjo, Jawa Timur 61253
+            </li>
+          </ul>
+        </div>
+
+        {/* Newsletter */}
+        <div>
+          <h3 className="text-blue-600 font-semibold mb-4">Get the latest information</h3>
+          <div className="flex">
+            <input
+              type="email"
+              placeholder="Email address"
+              className="px-3 py-2 text-sm bg-zinc-800 text-white rounded-l-full outline-none flex-grow"
+            />
+            <button className="px-4 bg-blue-600 text-black font-bold rounded-r-full hover:bg-blue-700">
+              ➤
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-zinc-800">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between text-sm text-gray-500 gap-2">
+          <p>
+            Copyright © 2024 <span className="text-blue-600">Webcare.idn</span>. All Rights Reserved.
+          </p>
+          <div className="flex gap-4">
+            <a href="#" className="hover:text-blue-600">User Terms & Conditions</a>
+            <a href="#" className="hover:text-blue-600">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
 }

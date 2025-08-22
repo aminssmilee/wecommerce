@@ -30,10 +30,10 @@ export default function Detail() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <TopBar />
+      {/* <TopBar /> */}
       <Navbar />
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="grid lg:grid-cols-2 gap-12 mb-16">
+      <div className="max-w-7xl mx-auto px-4 py-8 ">
+        <div className="grid lg:grid-cols-2 gap-12 mt-14 mb-16">
           {/* Product Images */}
           <div className="space-y-4">
             <div className="relative aspect-square bg-white rounded-2xl overflow-hidden shadow-lg">

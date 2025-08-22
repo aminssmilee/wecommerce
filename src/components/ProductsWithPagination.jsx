@@ -1,89 +1,82 @@
-import React, { useState } from "react";
-import Pagination from "react-paginate";
+import React, { useEffect, useMemo, useState } from "react";
+import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-export default function ProductsWithPagination({ products }) {
-    const itemsPerPage = 4; // jumlah produk per halaman
-    const [currentPage, setCurrentPage] = useState(0);
+function useScreen() {
+  const [w, setW] = useState(typeof window !== "undefined" ? window.innerWidth : 1024);
+  useEffect(() => {
+    const onResize = () => setW(window.innerWidth);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+  return {
+    isMobile: w < 768,
+    isTablet: w >= 768 && w < 1024,
+  };
+}
 
-    const pageCount = Math.ceil(products.length / itemsPerPage);
+export default function ProductsSlider({ products }) {
+  const { isMobile, isTablet } = useScreen();
 
-    const handlePageClick = (event) => {
-        setCurrentPage(event.selected);
-    };
+  const settings = useMemo(() => ({
+    dots: true,
+    infinite: true,
+    speed: 500,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    slidesToShow: isMobile ? 1 : isTablet ? 2 : 3,            // ✅ mobile 1, tablet 2, desktop 3
+    centerMode: isMobile ? false : true,                       // ✅ matikan di mobile
+    centerPadding: isMobile ? "0px" : (isTablet ? "40px" : "60px"),
+  }), [isMobile, isTablet]);
 
-    const offset = currentPage * itemsPerPage;
-    const currentItems = products.slice(offset, offset + itemsPerPage);
-
-    return (
-        <section className="py-16 bg-gray-50">
-            <div className="max-w-7xl mx-auto px-4 text-center mb-10">
-                <h1 className="text-3xl font-bold text-gray-800 mb-3">
-                    Pilihan Produk Kami
-                </h1>
-                <p className="text-gray-600 max-w-2xl mx-auto">
-                    Jelajahi koleksi produk digital pilihan kami yang dirancang untuk menghadirkan inovasi, efisiensi, dan kualitas terbaik bagi kebutuhan bisnis maupun pribadi Anda.
-                </p>
-            </div>
-
-            <div className="max-w-7xl mx-auto px-4">
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {currentItems.map((service, index) => (
-                        <div
-                            key={service.id || index}
-                            className="bg-zinc-100 overflow-hidden group hover:border-black border border-gray-200 transition-shadow duration-300 cursor-pointer"
-                        >
-                            <div className="h-48 w-full overflow-hidden">
-                                <img
-                                    src={
-                                        service.images?.length
-                                            ? `http://127.0.0.1:8000/storage/${service.images[0].image_path}`
-                                            : "/placeholder.jpg"
-                                    }
-                                    alt={service.title}
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                />
-                            </div>
-
-                            <div className="p-6">
-                                <span className="inline-block text-xs font-semibold px-2 py-1 rounded mb-2 bg-blue-100 text-blue-800">
-                                    Product
-                                </span>
-                                <h3 className="font-semibold text-lg mb-2">{service.title}</h3>
-                                <p className="text-gray-600 text-sm mb-3">
-                                    {service.description?.split(" ").slice(0, 8).join(" ")}...
-                                </p>
-                                <p className="text-blue-600 font-semibold">
-                                    Rp {parseInt(service.price || 0).toLocaleString('id-ID')}
-                                </p>
-                                <Link to={`/detail/${service.id}`} className="mt-2 inline-flex items-center text-blue-600 font-medium hover:underline text-sm">
-                                    Learn More <ArrowRight className="w-4 h-4 ml-1" />
-                                </Link>
-                            </div>
-                        </div>
-                    ))}
+  return (
+    <section className="py-6 bg-gray-50 font-helvetica">
+      <div className="max-w-8xl mx-auto">
+        {/* key memaksa remount saat breakpoint berubah */}
+        <Slider key={`${isMobile}-${isTablet}`} {...settings}>
+          {products.map((service, index) => (
+            <div key={service.id || index} className="px-2">
+              <div className="bg-white rounded-2xl overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105">
+                <div className="w-full overflow-hidden aspect-[4/3] sm:aspect-[16/9]">
+                  <img
+                    src={service.images?.length
+                      ? `http://127.0.0.1:8000/storage/${service.images[0].image_path}`
+                      : "/placeholder.jpg"}
+                    alt={service.title}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
 
-                <div className=" justify-between mt-10">
-                    <Pagination
-                        previousLabel={"← "}
-                        nextLabel={"Next →"}
-                        pageCount={pageCount}
-                        onPageChange={handlePageClick}
-                        containerClassName="flex justify-center space-x-2 mt-10"
-                        activeClassName="bg-blue-600 text-white"
-                        pageClassName="border border-gray-300 rounded cursor-pointer px-3 py-1 hover:bg-gray-200"
-                        pageLinkClassName="select-none"
-                        previousClassName="border border-gray-300 rounded cursor-pointer px-3 py-1 hover:bg-gray-200 flex items-center"
-                        previousLinkClassName="select-none"
-                        nextClassName="border border-gray-300 rounded cursor-pointer px-3 py-1 hover:bg-gray-200 flex items-center"
-                        nextLinkClassName="select-none"
-                        disabledClassName="opacity-50 cursor-not-allowed"
-                    />
-
+                <div className="p-4 sm:p-5 text-left">
+                  <h3 className="font-semibold text-base sm:text-lg text-gray-800 mb-1 truncate">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm sm:text-base leading-snug mb-3 line-clamp-2">
+                    {(service.description || "").slice(0, 50) + "..."}
+                  </p>
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+                    <p className="text-blue-600 font-semibold text-sm sm:text-base">
+                      Rp {parseInt(service.price || 0).toLocaleString("id-ID")}
+                    </p>
+                    <Link
+                      to={`/detail/${service.id}`}
+                      className="inline-flex items-center text-blue-600 font-medium hover:underline text-xs sm:text-sm mt-1 md:mt-0"
+                    >
+                      Learn More <ArrowRight className="w-3 h-3 ml-1" />
+                    </Link>
+                  </div>
                 </div>
+
+              </div>
             </div>
-        </section>
-    );
+          ))}
+        </Slider>
+      </div>
+      
+    </section>
+  );
 }
