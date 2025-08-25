@@ -18,12 +18,12 @@ export default function Navbar() {
         </div>
 
         {/* Menu Desktop */}
-        <nav className="hidden md:flex items-center space-x-10">
+        {/* <nav className="hidden md:flex items-center space-x-10">
           <a href="/" className="text-gray-700 hover:text-blue-800 transition-colors font-medium">Home</a>
           <a href="#" className="text-gray-700 hover:text-blue-800 transition-colors font-medium">Services</a>
           <a href="#" className="text-gray-700 hover:text-blue-800 transition-colors font-medium">Pricing</a>
           <a href="#" className="text-gray-700 hover:text-blue-800 transition-colors font-medium">FAQ</a>
-        </nav>
+        </nav> */}
 
         {/* Button Desktop */}
         <div className="hidden md:flex items-center">
