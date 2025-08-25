@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import TopBar from './components/top-bar';
+// import TopBar from './components/top-bar';
 import Navbar from './components/navbar';
 import HeroSection from './components/hero-section';
-import TrustBadges from './components/trust-badges';
+// import TrustBadges from './components/trust-badges';
 import ServiceCategories from './components/service-categories';
-import CTABanners from './components/Banners';
+// import CTABanners from './components/Banners';
 import Detail from './components/Detail';
 import { Footer } from "./components/Footer";
 import QuotePage from './pages/QuotePage';
@@ -26,7 +26,6 @@ function LoadingScreen() {
 function LandingPage() {
   return (
     <div className="min-h-screen font-jakarta">
-      {/* <TopBar /> */}
       <Navbar />
       <HeroSection />
       <ServiceCategories />
