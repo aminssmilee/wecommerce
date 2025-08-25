@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Navbar from "./navbar"
+import Navbar from "./Navbar"
 import TopBar from "./top-bar"
 import { Footer } from "./Footer";
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import TopBar from './components/top-bar';
-import Navbar from './components/navbar';
+import Navbar from './components/Navbar';
 import HeroSection from './components/hero-section';
 // import TrustBadges from './components/trust-badges';
 import ServiceCategories from './components/service-categories';
