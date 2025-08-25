@@ -31,7 +31,7 @@ function LandingPage() {
       <HeroSection />
       <ServiceCategories />
       <Categories />
-      <TrustBadges />
+      {/* <TrustBadges /> */}
       {/* <CTABanners /> */}
       <Hero />
       <Footer />

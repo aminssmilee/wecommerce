@@ -5,7 +5,7 @@ export function Footer() {
   return (
     <footer className="bg-black text-gray-300 font-helvetica">
       {/* Connect Section */}
-      <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-zinc-800">
+      <div className="max-w-[85rem] mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-zinc-800">
         <h2 className="text-2xl font-bold">
           Let’s <span className="text-blue-600">Connect</span> there
         </h2>
@@ -17,7 +17,7 @@ export function Footer() {
 
 
       {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="max-w-[85rem] mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         {/* Brand Info */}
         <div className="space-y-4 text-justify">
           <h2 className="text-2xl font-bold text-blue-700">Webcare.idn</h2>
