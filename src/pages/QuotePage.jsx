@@ -1,6 +1,6 @@
 import { Footer } from "../components/Footer";
 import TopBar from '../components/top-bar'; 
-import Navbar from '../components/navbar';
+import Navbar from '../components/Navbar';
 
 // src/pages/QuotePage.jsx
 export default function QuotePage() {
