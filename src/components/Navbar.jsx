@@ -45,10 +45,10 @@ export default function Navbar() {
       {/* Mobile Menu Dropdown */}
       {isOpen && (
         <div className="md:hidden mt-2 bg-neutral-50 rounded-2xl shadow-md py-4 px-6 flex flex-col space-y-4 text-center">
-          <a href="/" className="text-gray-700 hover:text-blue-600 font-medium">Home</a>
+          {/* <a href="/" className="text-gray-700 hover:text-blue-600 font-medium">Home</a>
           <a href="#" className="text-gray-700 hover:text-blue-600 font-medium">Services</a>
           <a href="#" className="text-gray-700 hover:text-blue-600 font-medium">Pricing</a>
-          <a href="#" className="text-gray-700 hover:text-blue-600 font-medium">FAQ</a>
+          <a href="#" className="text-gray-700 hover:text-blue-600 font-medium">FAQ</a> */}
           <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium transition-colors flex items-center justify-center space-x-2 shadow-sm">
             <Phone className="w-4 h-4" />
             <span>Book a Call</span>
